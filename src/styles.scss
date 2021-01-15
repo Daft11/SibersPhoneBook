@@ -1,1 +1,92 @@
-/* You can add global styles to this file, and also import other style files */
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@import "~@angular/material/theming";
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat-core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$SibersPhoneBook-primary: mat-palette($mat-indigo);
+$SibersPhoneBook-accent: mat-palette($mat-pink, A200, A100, A400);
+
+// The warn palette is optional (defaults to red).
+$SibersPhoneBook-warn: mat-palette($mat-red);
+
+// Create the theme object. A theme consists of configurations for individual
+// theming systems such as "color" or "typography".
+$SibersPhoneBook-theme: mat-light-theme(
+  (
+    color: (
+      primary: $SibersPhoneBook-primary,
+      accent: $SibersPhoneBook-accent,
+      warn: $SibersPhoneBook-warn,
+    ),
+  )
+);
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include angular-material-theme($SibersPhoneBook-theme);
+
+//<Mixins>===============================================================================================
+@import "./exportStyles/mixins.scss";
+//</Mixins>===============================================================================================
+
+//<Default fonts>==========================================================================================
+$fontfamily: Roboto, "Montserrat", sans-srif;
+//</Default fonts>==========================================================================================
+
+//<Variables>===========================================================================================================
+@import "./exportStyles/variables.scss";
+//</Variables>===========================================================================================================
+
+//<Null style, common parameters>===============================================================================================
+@import "./exportStyles/null.scss";
+
+body {
+  font-size: 15px;
+  overflow-x: hidden;
+  line-height: 1.6;
+  background-color: $bgcolor;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+//</Null style, common parameters>===============================================================================================
+
+//<Main grid>===========================================================================================================
+.container {
+  max-width: $mw + px;
+  margin: 0 auto;
+  width: 100%;
+  overflow: hidden;
+  @media (max-width: $md1+px) {
+    max-width: none;
+    padding: 0 20px;
+  }
+  @media (max-width: $md2+px) {
+    max-width: none;
+    padding: 0 20px;
+  }
+  @media (max-width: $md3+px) {
+    max-width: none;
+    padding: 0 20px;
+  }
+}
+
+//<Main grid>====================================================================================================
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+}

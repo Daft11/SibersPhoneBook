@@ -1,0 +1,68 @@
+@import "../../../exportStyles/variables.scss";
+
+.contactlist__container {
+  padding: 10px 50px;
+  max-width: 1000px;
+  .contactlist__char-group {
+    display: flex;
+    flex-direction: column;
+
+    .contactlist__char-element {
+      display: inline-block;
+      font-size: 30px;
+      margin-bottom: 25px;
+      .contactlist__char-title {
+        position: relative;
+        &::before {
+          z-index: -1;
+          content: "";
+          display: block;
+          position: absolute;
+          top: -5px;
+          left: -20px;
+          width: 50px;
+          height: 50px;
+          border-radius: 50%;
+          background-color: $maincolor;
+        }
+      }
+    }
+  }
+  .contactlist__contact-group {
+    display: flex;
+    flex-direction: column;
+
+    .contactlist__contact-element {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      flex-wrap: nowrap;
+      margin: 5px;
+      transition: background-color linear 0.1s;
+      &:hover {
+        background-color: rgba(251, 235, 209, 0.4);
+      }
+      .contactlist__contact-image {
+        height: 50px;
+        width: 50px;
+        border-radius: 50%;
+        margin: 0 20px;
+      }
+      .contactlist__contact-info {
+        // max-height: 50px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        .contactlist__contact-name {
+          font-size: 20px;
+          line-height: 20px;
+        }
+        .contactlist__contact-phone {
+          font-size: 15px;
+          line-height: 20px;
+          color: $secondarytextcolor;
+        }
+      }
+    }
+  }
+}

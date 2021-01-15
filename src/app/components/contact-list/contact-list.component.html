@@ -1,0 +1,26 @@
+<section class="contactlist__container container">
+  <button (click)="addNewContact('aaa', '8-800-555-35-35')">КНОПОЧКА</button>
+  <ul class="contactlist__char-group">
+    <li *ngFor="let char of charsForGouping" class="contactlist__char-element">
+      <h4 class="contactlist__char-title">{{ char }}</h4>
+      <ul class="contactlist__contact-group">
+        <li
+          *ngFor="let contact of filterByChar(char)"
+          class="contactlist__contact-element"
+        >
+          <img
+            src="{{ contact.avatar }}"
+            class="contactlist__contact-image"
+            (error)="onErrorToLoad($event)"
+          />
+          <div class="contactlist__contact-info">
+            <span class="contactlist__contact-name">
+              {{ contact.name }}
+            </span>
+            <p class="contactlist__contact-phone">{{ contact.phone }}</p>
+          </div>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</section>

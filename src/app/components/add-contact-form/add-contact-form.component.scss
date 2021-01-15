@@ -1,0 +1,40 @@
+@import "../../../exportStyles/variables.scss";
+@import "../../../exportStyles/mixins.scss";
+
+.addcontact__container {
+  @include flexbox;
+  flex-direction: column;
+  justify-content: space-evenly;
+  min-height: 300px;
+  min-width: 300px;
+  .addcontact__form-group {
+    @include flexbox;
+    flex-direction: column;
+    justify-content: space-between;
+    .addcontact__form-element {
+      padding: 5px;
+    }
+    .input {
+      border-bottom: solid 2px $maincolor;
+      padding-bottom: 5px;
+      font-size: 18px;
+    }
+  }
+  .addcontact__button-group {
+    @include flexbox;
+    flex-direction: row;
+    justify-content: space-evenly;
+    .btn {
+      border: 2px solid $maincolor;
+      background-color: $contrast;
+      padding: 10px 15px;
+      min-width: 120px;
+      transition: color linear 0.2s;
+      transition: background-color linear 0.2s;
+      &:hover {
+        background-color: $maincolor;
+        color: $contrast;
+      }
+    }
+  }
+}
