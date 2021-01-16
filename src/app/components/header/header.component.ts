@@ -13,8 +13,6 @@ export class HeaderComponent implements OnInit {
   constructor(private dialog: MatDialog) {}
 
   onAddContactClick() {
-    console.log('click');
-
     const dialogConfig = new MatDialogConfig();
 
     dialogConfig.disableClose = true;

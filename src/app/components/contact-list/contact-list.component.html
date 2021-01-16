@@ -1,5 +1,4 @@
 <section class="contactlist__container container">
-  <button (click)="addNewContact('aaa', '8-800-555-35-35')">КНОПОЧКА</button>
   <ul class="contactlist__char-group">
     <li *ngFor="let char of charsForGouping" class="contactlist__char-element">
       <h4 class="contactlist__char-title">{{ char }}</h4>
@@ -19,6 +18,13 @@
             </span>
             <p class="contactlist__contact-phone">{{ contact.phone }}</p>
           </div>
+          <button
+            class="delete-btn"
+            [attr.data-contact-id]="contact.id"
+            (click)="onDeleteClick($event)"
+          >
+            Delete
+          </button>
         </li>
       </ul>
     </li>

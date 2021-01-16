@@ -29,6 +29,12 @@ export class ContactListComponent implements OnInit {
         this.contactList = response; //assign contactList as new array of fetched contacts via subscribe
         this.charsForGouping = response.reduce(this.reducer, []); //create new array of chars for sorting contactList
       });
+    this.contactService.contactListChanged.subscribe(
+      //subscribing on changes contactList from contactService and reassign local contactList
+      (newContactList: ContactModel[]) => {
+        this.contactList = newContactList;
+      }
+    );
   }
 
   filterByChar(char: string) {
@@ -39,15 +45,13 @@ export class ContactListComponent implements OnInit {
     return arr; //returning part of array with matching first letter of the name
   }
 
-  addNewContact(name: string, phone: string) {
-    let id = '' + this.contactList.length;
-    let newContact = new ContactModel(name, phone, id); //adds new contact based on ContactModel
-    this.contactList.push(newContact); //repeat sorting of contactList
-    this.contactList.sort((a, b) => {
-      const nameA: string = a.name;
-      const nameB: string = b.name;
-      return nameA.localeCompare(nameB);
-    });
+  // addNewContact(name: string, phone: string) {//adds new contact to contactList in contactService, wich will emit this changes
+  //   this.contactService.addNewContact(name, phone);
+  // }
+
+  onDeleteClick(event: any) {
+    const id = event.target.getAttribute('data-contact-id');
+    this.contactService.deleteContact(id);
   }
 
   onErrorToLoad(event: any) {

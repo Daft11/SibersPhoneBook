@@ -10,6 +10,7 @@ import {
   MatDialogRef,
   MAT_DIALOG_DATA,
 } from '@angular/material/dialog';
+import { ContactService } from '../contact-list/contact.service';
 
 @Component({
   selector: 'app-add-contact-form',
@@ -22,6 +23,7 @@ export class AddContactFormComponent implements OnInit {
   isFormValid: boolean = false;
 
   constructor(
+    private contactService: ContactService, //will help us to push new data to contactList
     private dialogRef: MatDialogRef<AddContactFormComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {}
@@ -29,14 +31,14 @@ export class AddContactFormComponent implements OnInit {
   ngOnInit(): void {}
 
   onSaveClick() {
-    //on click closing window and passing data from viewed input fields to component wich called modal form
-    this.dialogRef.close({
-      name: this.nameInputRef.nativeElement.value,
-      phone: this.phoneInputRef.nativeElement.value,
-    });
+    //on click closing window and passing data from viewed input fields to contactService
+    const name = this.nameInputRef.nativeElement.value;
+    const phone = this.phoneInputRef.nativeElement.value;
+    this.contactService.addNewContact(name, phone);
+    this.dialogRef.close('contact added'); //just chekicng log
   }
 
   onNoClick() {
-    this.dialogRef.close();
+    this.dialogRef.close('window closed'); //just chekicng log
   }
 }
