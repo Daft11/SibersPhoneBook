@@ -5,11 +5,9 @@ import {
   OnInit,
   ViewChild,
 } from '@angular/core';
-import {
-  MatDialog,
-  MatDialogRef,
-  MAT_DIALOG_DATA,
-} from '@angular/material/dialog';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { ContactModel } from '../contact-list/contact.model';
 import { ContactService } from '../contact-list/contact.service';
 
 @Component({
@@ -18,27 +16,31 @@ import { ContactService } from '../contact-list/contact.service';
   styleUrls: ['./add-contact-form.component.scss'],
 })
 export class AddContactFormComponent implements OnInit {
-  @ViewChild('nameInput') nameInputRef: ElementRef;
-  @ViewChild('phoneInput') phoneInputRef: ElementRef;
-  isFormValid: boolean = false;
+  addContactForm: FormGroup;
 
   constructor(
     private contactService: ContactService, //will help us to push new data to contactList
-    private dialogRef: MatDialogRef<AddContactFormComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any
+    private dialogRef: MatDialogRef<AddContactFormComponent>
   ) {}
 
-  ngOnInit(): void {}
-
-  onSaveClick() {
-    //on click closing window and passing data from viewed input fields to contactService
-    const name = this.nameInputRef.nativeElement.value;
-    const phone = this.phoneInputRef.nativeElement.value;
-    this.contactService.addNewContact(name, phone);
-    this.dialogRef.close('contact added'); //just chekicng log
+  ngOnInit(): void {
+    this.addContactForm = new FormGroup({
+      name: new FormControl(null, { validators: [Validators.required] }),
+      phone: new FormControl(null, { validators: [Validators.required] }),
+    });
   }
 
-  onNoClick() {
-    this.dialogRef.close('window closed'); //just chekicng log
+  onSaveClick(): void {
+    //on click closing window and passing data from viewed input fields to contactService
+    const name = this.addContactForm.value.name;
+    const phone = this.addContactForm.value.phone;
+    this.contactService.addNewContact(name, phone);
+    console.log(this.addContactForm);
+
+    this.dialogRef.close(); //closing modal window
+  }
+
+  onCloseClick(): void {
+    this.dialogRef.close(); //closing modal window
   }
 }

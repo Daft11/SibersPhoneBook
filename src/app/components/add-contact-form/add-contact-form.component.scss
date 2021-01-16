@@ -2,11 +2,17 @@
 @import "../../../exportStyles/mixins.scss";
 
 .addcontact__container {
+  max-height: 400px;
+  @media (max-width: $md4+px) {
+    margin-right: auto;
+  }
+}
+.addcontact__form-body {
   @include flexbox;
   flex-direction: column;
   justify-content: space-evenly;
   min-height: 300px;
-  min-width: 300px;
+  // min-width: 300px;
   .addcontact__form-group {
     @include flexbox;
     flex-direction: column;
@@ -23,18 +29,11 @@
   .addcontact__button-group {
     @include flexbox;
     flex-direction: row;
-    justify-content: space-evenly;
-    .btn {
-      border: 2px solid $maincolor;
-      background-color: $contrast;
-      padding: 10px 15px;
-      min-width: 120px;
-      transition: color linear 0.2s;
-      transition: background-color linear 0.2s;
-      &:hover {
-        background-color: $maincolor;
-        color: $contrast;
-      }
+    justify-content: space-between;
+    align-items: center;
+    @media (max-width: $md4+px) {
+      flex-direction: column;
+      margin-top: 50px;
     }
   }
 }

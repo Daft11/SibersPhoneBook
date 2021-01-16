@@ -8,7 +8,9 @@ $max-logo-height: 80px;
   height: $header-height;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
   background-color: $contrast;
-  overflow: visible;
+  position: fixed;
+  top: 0;
+  z-index: 10;
 }
 
 .header__inner {
@@ -22,22 +24,14 @@ $max-logo-height: 80px;
   padding: 0 15px;
   margin: 0 auto;
   .header__logo {
-    height: $header-height * 0.85;
+    height: $header-height * 0.8;
     max-height: $max-logo-height;
     margin-right: 20px;
   }
-  // .header__title {
-  // }
-  .btn {
-    border: 2px solid $maincolor;
-    background-color: $contrast;
-    padding: 10px 15px;
-    min-width: 120px;
-    transition: color linear 0.2s;
-    transition: background-color linear 0.2s;
-    &:hover {
-      background-color: $maincolor;
-      color: $contrast;
+  .header__title {
+    @media (max-width: $md4+px) {
+      font-size: 1.5em;
+      margin-right: auto;
     }
   }
 }

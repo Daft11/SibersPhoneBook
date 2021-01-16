@@ -11,6 +11,7 @@ import { ContactDetailComponent } from './components/contact-detail/contact-deta
 import { HeaderComponent } from './components/header/header.component';
 import { ContactService } from './components/contact-list/contact.service';
 import { AddContactFormComponent } from './components/add-contact-form/add-contact-form.component';
+import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,8 @@ import { AddContactFormComponent } from './components/add-contact-form/add-conta
     HttpClientModule,
     MatDialogModule,
     BrowserAnimationsModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [ContactService],
   bootstrap: [AppComponent],

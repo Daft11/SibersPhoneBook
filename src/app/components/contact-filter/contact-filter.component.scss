@@ -1,0 +1,12 @@
+@import "../../../exportStyles/variables.scss";
+
+.search__container {
+  margin: 50px auto 20px;
+  text-align: center;
+}
+.search__input {
+  border: solid 1px $maincolor;
+  width: 60vw;
+  height: 30px;
+  border-radius: 5px;
+}

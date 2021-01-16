@@ -1,37 +1,35 @@
 <div class="addcontact__container container">
   <form action="" class="addcontact__form-body">
-    <div class="addcontact__form-group">
-      <label
-        for="name"
-        class="addcontact__form-element addcontact__label label__name"
-        >Contact name
-      </label>
+    <div class="addcontact__form-group" [formGroup]="addContactForm">
+      <label for="name" class="addcontact__form-element">Contact name </label>
       <input
         type="text"
         id="name"
-        class="addcontact__form-element input input__name"
+        class="addcontact__form-element input"
         #nameInput
         formControlName="name"
       />
-      <label
-        for="phone"
-        class="addcontact__form-element addcontact__label label__phonenumber"
-        >Phone number
-      </label>
+      <label for="phone" class="addcontact__form-element">Phone number </label>
       <input
         id="phone"
         type="text"
-        class="addcontact__form-element input input__phonenumber"
+        class="addcontact__form-element input"
         #phoneInput
         formControlName="phone"
       />
     </div>
-
-    <div class="addcontact__form-footer"></div>
+    <div class="addcontact__button-group">
+      <button (click)="onCloseClick()" class="form__submit-btn btn">
+        Close</button
+      ><br />
+      <button
+        type="submit"
+        class="form__submit-btn btn"
+        (click)="onSaveClick()"
+        [disabled]="!addContactForm.valid"
+      >
+        Create
+      </button>
+    </div>
   </form>
-  <div class="addcontact__button-group">
-    <button (click)="onNoClick()" class="form__submit-btn btn">Close</button
-    ><br />
-    <button (click)="onSaveClick()" class="form__submit-btn btn">Create</button>
-  </div>
 </div>

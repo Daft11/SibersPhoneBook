@@ -15,14 +15,8 @@ export class HeaderComponent implements OnInit {
   onAddContactClick() {
     const dialogConfig = new MatDialogConfig();
 
-    dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
 
-    let dialogRef = this.dialog.open(AddContactFormComponent, dialogConfig);
-
-    dialogRef.afterClosed().subscribe((resullt) => {
-      // console.log('The dialog was closed');
-      console.log(resullt);
-    });
+    this.dialog.open(AddContactFormComponent, dialogConfig);
   }
 }

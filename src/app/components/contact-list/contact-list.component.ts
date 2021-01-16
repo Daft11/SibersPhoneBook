@@ -45,13 +45,14 @@ export class ContactListComponent implements OnInit {
     return arr; //returning part of array with matching first letter of the name
   }
 
-  // addNewContact(name: string, phone: string) {//adds new contact to contactList in contactService, wich will emit this changes
-  //   this.contactService.addNewContact(name, phone);
-  // }
-
   onDeleteClick(event: any) {
     const id = event.target.getAttribute('data-contact-id');
     this.contactService.deleteContact(id);
+  }
+
+  onDetailClick(event: any) {
+    const id = event.target.getAttribute('data-contact-id');
+    console.log(id);
   }
 
   onErrorToLoad(event: any) {

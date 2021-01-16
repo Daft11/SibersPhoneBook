@@ -3,6 +3,11 @@
 .contactlist__container {
   padding: 10px 50px;
   max-width: 1000px;
+  @media (max-width: $md4+px) {
+    padding: 10px 20px;
+    font-size: 1.5em;
+    // margin-right: auto;
+  }
   .contactlist__char-group {
     display: flex;
     flex-direction: column;
@@ -37,11 +42,15 @@
       flex-direction: row;
       align-items: center;
       flex-wrap: nowrap;
-      margin: 5px;
+      padding: 5px;
       transition: background-color linear 0.1s;
+      border-bottom: solid 1px lighten($color: $maincolor, $amount: 10);
+      @media (max-width: $md1+px) {
+      }
       &:hover {
         background-color: rgba(251, 235, 209, 0.4);
-        & > .delete-btn {
+        & > .delete-btn,
+        .details-btn {
           display: block;
         }
       }
@@ -50,25 +59,50 @@
         width: 50px;
         border-radius: 50%;
         margin: 0 20px;
+        @media (max-width: $md4+px) {
+          height: 30px;
+          width: 30px;
+          margin: 0 10px;
+        }
       }
       .contactlist__contact-info {
-        // max-height: 50px;
         display: flex;
         flex-direction: column;
         justify-content: space-evenly;
         .contactlist__contact-name {
+          @media (max-width: $md4+px) {
+            font-size: 0.5em;
+          }
           font-size: 20px;
           line-height: 20px;
         }
         .contactlist__contact-phone {
+          @media (max-width: $md4+px) {
+            font-size: 0.3em;
+            // margin-right: auto;
+          }
           font-size: 15px;
           line-height: 20px;
           color: $secondarytextcolor;
         }
       }
-      .delete-btn {
+      .details-btn {
         margin: 0 20px 0 auto;
         display: none;
+        background-color: transparent;
+
+        @media (max-width: $md1+px) {
+          display: block;
+        }
+      }
+      .delete-btn {
+        margin: 0 20px 0 0;
+        display: none;
+        background-color: transparent;
+
+        @media (max-width: $md1+px) {
+          display: block;
+        }
       }
     }
   }

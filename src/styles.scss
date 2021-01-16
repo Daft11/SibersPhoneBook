@@ -54,14 +54,17 @@ body {
   overflow-x: hidden;
   line-height: 1.6;
   background-color: $bgcolor;
+  //   height: 100%;
+  margin: 0;
 }
 
 html {
-  scroll-behavior: smooth;
+  //   scroll-behavior: smooth;
 }
 //</Null style, common parameters>===============================================================================================
 
 //<Main grid>===========================================================================================================
+
 .container {
   max-width: $mw + px;
   margin: 0 auto;
@@ -81,12 +84,26 @@ html {
   }
 }
 
-//<Main grid>====================================================================================================
+.btn {
+  border: 2px solid $maincolor;
+  border-radius: 5px;
+  background-color: $contrast;
+  padding: 10px 15px;
+  min-width: 120px;
+  transition: color linear 0.2s;
+  transition: background-color linear 0.2s;
+  &:hover {
+    background-color: $maincolor;
+    color: $contrast;
+    &:disabled {
+      color: #929292;
+    }
+  }
+  &:disabled {
+    border: 2px solid #a4a4a4;
+    background-color: #cacaca;
+    cursor: unset;
+  }
+}
 
-html,
-body {
-  height: 100%;
-}
-body {
-  margin: 0;
-}
+//<Main grid>====================================================================================================
