@@ -3,13 +3,17 @@
 .search__container {
   margin: 50px auto 20px;
   text-align: center;
+  @media (max-width: $md3+px) {
+    margin: 20px auto 10px;
+  }
 }
 .search__input {
   border: solid 1px $maincolor;
-  width: 60vw;
+  width: 60%;
   height: 30px;
   border-radius: 5px;
-    @media (max-width: $md3+px) {
-  width: 80vw;
-  }
+}
+
+.search__image {
+  margin-right: 10px;
 }
