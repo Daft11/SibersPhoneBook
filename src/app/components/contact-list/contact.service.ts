@@ -15,6 +15,7 @@ export class ContactService {
 
   constructor(private httpClient: HttpClient) {}
 
+
   fetchContactList(): Observable<ContactModel[]> {
     return this.httpClient
       .get<ContactModel[]>(this.externalServerUrl)
@@ -42,6 +43,7 @@ export class ContactService {
       this.filter();
     } else this.contactListChanged.emit(this.contactList.slice()); //if filtering is OFF will emit MAIN list
   }
+
 
   addNewContact(name: string, phone: string) {
     let id = this.contactList.length;

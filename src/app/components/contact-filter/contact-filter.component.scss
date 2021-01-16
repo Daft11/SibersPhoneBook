@@ -9,4 +9,7 @@
   width: 60vw;
   height: 30px;
   border-radius: 5px;
+    @media (max-width: $md3+px) {
+  width: 80vw;
+  }
 }

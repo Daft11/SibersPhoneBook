@@ -1,0 +1,19 @@
+@import "../../../exportStyles/variables.scss";
+
+.detail__container{
+	display: flex;
+	flex-direction: column;
+	width: 500px;
+	.contact__image{
+		align-self: center;
+		height: 50px;
+        width: 50px;
+        border-radius: 50%;
+        @media (max-width: $md4+px) {
+          height: 30px;
+          width: 30px;
+        }
+	}
+
+}
+

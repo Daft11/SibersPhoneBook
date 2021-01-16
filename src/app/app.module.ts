@@ -32,6 +32,6 @@ import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
   ],
   providers: [ContactService],
   bootstrap: [AppComponent],
-  entryComponents: [AddContactFormComponent],
+  entryComponents: [AddContactFormComponent, ContactDetailComponent],
 })
 export class AppModule {}

@@ -55,6 +55,7 @@ body {
   line-height: 1.6;
   background-color: $bgcolor;
   //   height: 100%;
+  overflow-y: auto !important;
   margin: 0;
 }
 

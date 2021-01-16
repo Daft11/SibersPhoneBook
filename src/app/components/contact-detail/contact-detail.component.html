@@ -1,1 +1,10 @@
 
+<section class="detail__container container">
+<img src="{{contact.avatar}}" class="contact__image" (error)="onErrorToLoad($event)">
+<div class="contact__info">
+<p class = "contact__element">Name: {{contact.name}}</p>
+<p class = "contact__element">Phone: {{contact.phone}}</p>
+<p class = "contact__element">Email: {{contact.email}}</p>
+</div>
+<button class="btn" (click)="onCloseClick()">Close</button>
+</section>

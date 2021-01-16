@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+
 import { ContactService } from './contact.service'; //using this service to fetch data from server
 import { ContactModel } from './contact.model'; //model for fetched array of contacts
+import { ContactDetailComponent } from '../contact-detail/contact-detail.component';
 
 @Component({
   selector: 'app-contact-list',
@@ -11,7 +14,7 @@ export class ContactListComponent implements OnInit {
   contactList: ContactModel[];
   charsForGouping: [];
   reducer = (accumulator, currentContact) => {
-    let char = currentContact.name.charAt(0);
+    let char = currentContact.name.charAt(0).toUpperCase();
     if (accumulator.includes(char)) {
       return accumulator;
     } else {
@@ -20,7 +23,8 @@ export class ContactListComponent implements OnInit {
     }
   };
 
-  constructor(private contactService: ContactService) {}
+  constructor(private contactService: ContactService,
+    private dialog: MatDialog) {}
 
   ngOnInit(): void {
     this.contactService
@@ -33,9 +37,11 @@ export class ContactListComponent implements OnInit {
       //subscribing on changes contactList from contactService and reassign local contactList
       (newContactList: ContactModel[]) => {
         this.contactList = newContactList;
+        this.charsForGouping = newContactList.reduce(this.reducer, [])//refresh arr of title chars to display
       }
     );
   }
+
 
   filterByChar(char: string) {
     //splits contactList to parts by fisrt char of contact name string
@@ -52,7 +58,14 @@ export class ContactListComponent implements OnInit {
 
   onDetailClick(event: any) {
     const id = event.target.getAttribute('data-contact-id');
-    console.log(id);
+
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.autoFocus = true;
+        dialogConfig.data = {
+        id: id
+    };
+    this.dialog.open(ContactDetailComponent, dialogConfig);
+
   }
 
   onErrorToLoad(event: any) {
