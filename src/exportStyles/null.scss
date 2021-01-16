@@ -27,7 +27,7 @@ section {
 }
 html,
 body {
-  height: 100%;
+  // height: 100%; //conflicts with modal dialog
   min-width: $minwidth;
 }
 body {
@@ -64,11 +64,10 @@ a:visited {
 }
 a:hover {
   text-decoration: none;
-  //   color: lighten($color-text-main, 30%);
+  color: lighten($color-text-main, 30%);
 }
 a:active {
   text-decoration: none;
-  //   color: $lmgreencolor;
 }
 ul li {
   list-style: none;
