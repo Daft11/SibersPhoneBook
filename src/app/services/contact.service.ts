@@ -7,7 +7,8 @@ import { ContactModel } from '../components/contact-list/contact.model'; //model
 
 @Injectable()
 export class ContactService {
-  externalServerUrl: string = 'http://demo.sibers.com/users'; //url to get data from
+  externalServerUrl: string =
+    'https://cors-anywhere.herokuapp.com/http://demo.sibers.com/users'; //url to get data from
   contactList: ContactModel[];
   filtredContactList: ContactModel[];
   isFilterEnabled: boolean = false; //marks searching status, if search field isn't empty becomes true, otherwise false
