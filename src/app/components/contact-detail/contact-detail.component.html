@@ -24,10 +24,10 @@
       id="name"
       formControlName="name"
       maxlength="30"
-      [ngClass]="{ 'is-invalid': submitted && f.name.errors }"
+      [ngClass]="{ 'is-invalid': f.name.errors }"
       [value]="contact.name"
     />
-    <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+    <div *ngIf="f.name.errors" class="invalid-feedback">
       <div *ngIf="f.name.errors.required">Name is required</div>
       <div *ngIf="f.name.errors.minlength || f.name.errors.pattern">
         Name must be at least 2 eng characters
@@ -39,10 +39,10 @@
       id="phone"
       formControlName="phone"
       maxlength="30"
-      [ngClass]="{ 'is-invalid': submitted && f.phone.errors }"
+      [ngClass]="{ 'is-invalid': f.phone.errors }"
       [value]="contact.phone"
     />
-    <div *ngIf="submitted && f.phone.errors" class="invalid-feedback">
+    <div *ngIf="f.phone.errors" class="invalid-feedback">
       <div *ngIf="f.phone.errors.required">Phone is required</div>
       <div *ngIf="f.phone.errors.pattern || f.phone.errors.minlength">
         Phone must be at least 6 digits
@@ -55,9 +55,9 @@
       value="{{ contact.email }}"
       formControlName="email"
       maxlength="40"
-      [ngClass]="{ 'is-invalid': submitted && f.email.errors }"
+      [ngClass]="{ 'is-invalid': f.email.errors }"
     />
-    <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+    <div *ngIf="f.email.errors" class="invalid-feedback">
       <div *ngIf="f.email.errors.email">
         Email must be a valid email address
       </div>
@@ -68,7 +68,14 @@
     <button class="btn" (click)="onChangeClick()" *ngIf="!isChanging">
       Change
     </button>
-    <button class="btn" (click)="onSaveClick()" *ngIf="isChanging">Save</button>
+    <button
+      class="btn"
+      (click)="onSaveClick()"
+      *ngIf="isChanging"
+      [disabled]="contactForm.invalid"
+    >
+      Save
+    </button>
     <button class="btn btn-delete" (click)="onDeleteClick()">Delete</button>
   </div>
 </section>

@@ -12,9 +12,9 @@
       class="addcontact-input"
       formControlName="name"
       maxlength="25"
-      [ngClass]="{ 'is-invalid': submitted && f.name.errors }"
+      [ngClass]="{ 'is-invalid': f.name.errors }"
     />
-    <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+    <div *ngIf="f.name.errors" class="invalid-feedback">
       <div *ngIf="f.name.errors.required">Name is required</div>
       <div *ngIf="f.name.errors.minlength || f.name.errors.pattern">
         Name must be at least 2 eng characters
@@ -27,9 +27,9 @@
       class="addcontact-input"
       formControlName="phone"
       maxlength="30"
-      [ngClass]="{ 'is-invalid': submitted && f.phone.errors }"
+      [ngClass]="{ 'is-invalid': f.phone.errors }"
     />
-    <div *ngIf="submitted && f.phone.errors" class="invalid-feedback">
+    <div *ngIf="f.phone.errors" class="invalid-feedback">
       <div *ngIf="f.phone.errors.required">Phone is required</div>
       <div *ngIf="f.phone.errors.pattern || f.phone.errors.minlength">
         Phone must be at least 6 digits
@@ -42,9 +42,9 @@
       class="addcontact-input"
       formControlName="email"
       maxlength="40"
-      [ngClass]="{ 'is-invalid': submitted && f.email.errors }"
+      [ngClass]="{ 'is-invalid': f.email.errors }"
     />
-    <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+    <div *ngIf="f.email.errors" class="invalid-feedback">
       <div *ngIf="f.email.errors.email">
         Email must be a valid email address
       </div>
@@ -54,6 +54,7 @@
     type="submit"
     class="addcontact__submit-btn btn"
     (click)="onSaveClick()"
+    [disabled]="contactForm.invalid"
   >
     Create
   </button>

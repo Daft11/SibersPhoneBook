@@ -11,7 +11,7 @@ import { ContactService } from '../../services/contact.service';
 })
 export class AddContactFormComponent implements OnInit {
   contactForm: FormGroup;
-  submitted: boolean = false;
+  // submitted: boolean = false;
 
   constructor(
     private contactService: ContactService, //will help us to push new data to contactList
@@ -30,7 +30,7 @@ export class AddContactFormComponent implements OnInit {
 
   onSaveClick(): void {
     //on click closing window and passing data from viewed input fields to contactService
-    this.submitted = true;
+    // this.submitted = true;
     // stop here if form is invalid
     if (this.contactForm.invalid) {
       return;

@@ -19,7 +19,7 @@ export class ContactDetailComponent implements OnInit {
   contact: ContactModel;
   isChanging: boolean = false;
   contactForm: FormGroup;
-  submitted: boolean = false;
+  // submitted: boolean = false;
 
   constructor(
     private contactService: ContactService,
@@ -39,7 +39,7 @@ export class ContactDetailComponent implements OnInit {
       //assign contact form and pass initial values to change
       this.contact.name,
       this.contact.phone,
-      this.contact.email
+      this.contact.email === 'none' ? '' : this.contact.email
     );
   }
 
@@ -65,7 +65,7 @@ export class ContactDetailComponent implements OnInit {
 
   onSaveClick(): void {
     //on click closing window and passing data from viewed input fields to contactService
-    this.submitted = true;
+    // this.submitted = true;
     // stop here if form is invalid
     if (this.contactForm.invalid) {
       return;

@@ -37,13 +37,15 @@ export class ContactService {
       .get(this.externalServerUrl)
       .pipe(
         tap((result: DirtyContactModel[]) => {
-          return result.forEach((contact) => {
+          return result.forEach((contact) => ({
             //clean up fetch data from keys we will not use
-            delete contact.username;
-            delete contact.posts;
-            delete contact.accountHistory;
-            delete contact.website;
-          });
+            phone: contact.phone,
+            id: contact.id,
+            email: contact.email,
+            company: contact.company,
+            favorite: contact.favorite,
+            avatar: contact.avatar,
+          }));
         })
       )
       .pipe(
