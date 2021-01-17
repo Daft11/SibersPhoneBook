@@ -26,7 +26,7 @@ export class FormService {
         initPhone,
         [
           Validators.required,
-          Validators.pattern('[0-9(). -x]*'),
+          Validators.pattern('[0-9( ).x-]*'),
           Validators.minLength(6),
           Validators.maxLength(30),
         ],

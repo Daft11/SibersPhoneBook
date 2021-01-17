@@ -60,7 +60,7 @@ export class ContactListComponent implements OnInit {
   }
 
   fixLongName(contactName: string) {
-    //make too long names shorter(full name will appear in details)
+    //make too long names shorter (full name will appear in details)
     if (contactName.length > 20) {
       return contactName.substring(0, 17) + '...';
     }

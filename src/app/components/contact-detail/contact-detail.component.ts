@@ -53,6 +53,7 @@ export class ContactDetailComponent implements OnInit {
   }
 
   onDeleteClick(): void {
+    //it calls method deleteContact() and passing id of contact to delete
     this.contactService.deleteContact(this.id);
     this.dialogRef.close(); //closing modal window
   }
@@ -74,7 +75,7 @@ export class ContactDetailComponent implements OnInit {
     const email: string = this.contactForm.value.email || 'none'; //if email has not value, pass 'none' instead
     this.onDeleteClick();
     this.contactService.addNewContact(name, phone, email, this.id); //push new new data to build contact and then emit changes in contactService
-    this.dialogRef.close(); //just closing MatDialog
+    this.dialogRef.close(); //closing modal window
   }
 
   onErrorToLoad(event: any) {
