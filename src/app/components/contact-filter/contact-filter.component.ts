@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnInit } from '@angular/core';
-import { ContactService } from '../contact-list/contact.service';
+import { ContactService } from '../../services/contact.service';
 
 @Component({
   selector: 'app-contact-filter',

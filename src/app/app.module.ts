@@ -9,7 +9,7 @@ import { ContactListComponent } from './components/contact-list/contact-list.com
 import { ContactFilterComponent } from './components/contact-filter/contact-filter.component';
 import { ContactDetailComponent } from './components/contact-detail/contact-detail.component';
 import { HeaderComponent } from './components/header/header.component';
-import { ContactService } from './components/contact-list/contact.service';
+import { ContactService } from './services/contact.service';
 import { AddContactFormComponent } from './components/add-contact-form/add-contact-form.component';
 import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 

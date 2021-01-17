@@ -1,4 +1,5 @@
 @import "../../../exportStyles/variables.scss";
+@import "../../../exportStyles/mixins.scss";
 
 .contactlist__container {
   padding: 10px 50px;
@@ -6,10 +7,9 @@
   @media (max-width: $md4+px) {
     padding: 10px 20px;
     font-size: 1.5em;
-    // margin-right: auto;
   }
   .contactlist__char-group {
-    display: flex;
+    @include flexbox;
     flex-direction: column;
 
     .contactlist__char-element {
@@ -34,11 +34,11 @@
     }
   }
   .contactlist__contact-group {
-    display: flex;
+    @include flexbox;
     flex-direction: column;
 
     .contactlist__contact-element {
-      display: flex;
+      @include flexbox;
       flex-direction: row;
       align-items: center;
       flex-wrap: nowrap;
@@ -48,7 +48,7 @@
       &:hover {
         background-color: rgba(251, 235, 209, 0.4);
         @media (max-width: $md1+px) {
-          background-color: unset;
+          background-color: transparent;
         }
         & > .icon-btn {
           display: block;
@@ -68,33 +68,39 @@
       }
       .contactlist__contact-info {
         cursor: pointer;
-        display: flex;
+        @include flexbox;
         flex-direction: column;
         justify-content: space-evenly;
+
         &:hover {
           text-decoration: underline;
           @media (max-width: $md1+px) {
-            // margin-right: auto;
-            // height: 170px;
             text-decoration: unset;
           }
         }
 
         .contactlist__contact-name {
+          display: inline-block;
           @media (max-width: $md4+px) {
             font-size: 0.5em;
           }
-          font-size: 20px;
+          font-size: $fontsizelabel;
           line-height: 20px;
+          &:active {
+            text-decoration: underline;
+          }
         }
         .contactlist__contact-phone {
+          display: inline-block;
           @media (max-width: $md4+px) {
-            font-size: 0.3em;
-            // margin-right: auto;
+            font-size: 0.4em;
           }
-          font-size: 15px;
+          font-size: $fontsizesecondary;
           line-height: 20px;
           color: $secondarytextcolor;
+          &:active {
+            text-decoration: underline;
+          }
         }
       }
 
@@ -111,10 +117,6 @@
         background-image: url("../../../assets/images/info.svg");
         margin: 0 20px 0 auto;
       }
-      // .delete-btn {
-      //   background-image: url("../../../assets/images/delete.svg");
-      //   margin: 0 20px 0 0;
-      // }
     }
   }
 }

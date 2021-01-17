@@ -1,23 +1,25 @@
+/*Service provides other components data and methods to manipulate contacts*/
 import { HttpClient } from '@angular/common/http';
 import { EventEmitter, Injectable } from '@angular/core';
 import { tap } from 'rxjs/operators';
-import { DirtyContactModel } from './contact.model'; //model for fetched array of contacts
-import { ContactModel } from './contact.model'; //model for cleaned array of contacts
+import { DirtyContactModel } from '../components/contact-list/contact.model'; //model for fetched array of contacts
+import { ContactModel } from '../components/contact-list/contact.model'; //model for cleaned array of contacts
 
 @Injectable()
 export class ContactService {
   externalServerUrl: string = 'http://demo.sibers.com/users'; //url to get data from
   contactList: ContactModel[];
   filtredContactList: ContactModel[];
-  isFilterEnabled: boolean = false;
+  isFilterEnabled: boolean = false; //marks searching status, if search field isn't empty becomes true, otherwise false
   valueForFiltering: string;
-  contactListChanged = new EventEmitter<ContactModel[]>();
+  contactListChanged = new EventEmitter<ContactModel[]>(); //every changes with contactList will be emited though this EventEmitter
 
   constructor(private httpClient: HttpClient) {}
 
   getContactList() {
     const localStorageData = JSON.parse(localStorage.getItem('contactList')); //will return null or data
     if (localStorageData) {
+      //if there is some data, it will be stored into local variable for manipulations with in future
       this.contactList = localStorageData;
       setTimeout(() => {
         this.emitContactListChanges();
@@ -60,18 +62,24 @@ export class ContactService {
 
   emitContactListChanges(): void {
     if (this.isFilterEnabled) {
-      //if user while have some text in filter input will change elemets this function will emit FILTRED list and filter deleted or added contacts
+      //if search field ISN'T EMPTY will emit new array of FILTRED contactList
+
       this.contactListChanged.emit(
         this.filtredContactList.slice() as ContactModel[]
       );
       this.filter();
     } else {
-      this.contactListChanged.emit(this.contactList.slice() as ContactModel[]); //if filtering is OFF will emit not filtred contactList
+      //if search field EMPTY will emit NOT filtred contactList
+      this.contactListChanged.emit(this.contactList.slice() as ContactModel[]);
     }
   }
 
-  addNewContact(name: string, phone: string, email: string): void {
-    const id = this.contactList.length; //creates new id
+  addNewContact(
+    name: string,
+    phone: string,
+    email: string,
+    id: number = this.contactList.length
+  ): void {
     const newContact = new ContactModel(name, phone, id, email); //adds new contact based on ContactModel
     this.contactList.push(newContact); //repeat sorting of contactList
     this.sortContactsAlphabet(this.contactList);

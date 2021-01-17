@@ -1,11 +1,13 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { ContactService } from '../contact-list/contact.service';
+import { ContactService } from '../../services/contact.service';
 import { ContactModel } from '../contact-list/contact.model';
 import {
   MatDialog,
   MatDialogRef,
   MAT_DIALOG_DATA,
 } from '@angular/material/dialog';
+import { FormGroup } from '@angular/forms';
+import { FormService } from 'src/app/services/form.service';
 
 @Component({
   selector: 'app-contact-detail',
@@ -15,20 +17,35 @@ import {
 export class ContactDetailComponent implements OnInit {
   id: number;
   contact: ContactModel;
+  isChanging: boolean = false;
+  contactForm: FormGroup;
+  submitted: boolean = false;
 
   constructor(
     private contactService: ContactService,
     private dialogRef: MatDialogRef<ContactDetailComponent>,
+    private formServie: FormService,
     @Inject(MAT_DIALOG_DATA) data
   ) {
-    this.id = data.id; // gets id from MatDialog on component init
+    this.id = +data.id; // gets id from MatDialog on component init
   }
 
   ngOnInit(): void {
     //via id finds in contactService.contactList specific contact to display it details
     this.contact = this.contactService.contactList.find((contact) => {
-      return contact.id == this.id;
+      return contact.id === this.id;
     });
+    this.contactForm = this.formServie.getContactForm(
+      //assign contact form and pass initial values to change
+      this.contact.name,
+      this.contact.phone,
+      this.contact.email
+    );
+  }
+
+  // convenience getter for easy access to form fields
+  get f() {
+    return this.contactForm.controls;
   }
 
   onCloseClick(): void {
@@ -40,7 +57,25 @@ export class ContactDetailComponent implements OnInit {
     this.dialogRef.close(); //closing modal window
   }
 
-  onChangeClick() {}
+  onChangeClick() {
+    //when isChanging true, template rerenders and shows us inputs with same value intead of simple text
+    this.isChanging = true;
+  }
+
+  onSaveClick(): void {
+    //on click closing window and passing data from viewed input fields to contactService
+    this.submitted = true;
+    // stop here if form is invalid
+    if (this.contactForm.invalid) {
+      return;
+    }
+    const name: string = this.contactForm.value.name;
+    const phone: string = this.contactForm.value.phone;
+    const email: string = this.contactForm.value.email || 'none'; //if email has not value, pass 'none' instead
+    this.onDeleteClick();
+    this.contactService.addNewContact(name, phone, email, this.id); //push new new data to build contact and then emit changes in contactService
+    this.dialogRef.close(); //just closing MatDialog
+  }
 
   onErrorToLoad(event: any) {
     // to prevent error on loading image for contact and set new image instead

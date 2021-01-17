@@ -41,6 +41,7 @@ input,
 button,
 textarea {
   font-family: $fontfamily;
+  padding: 0 5px;
 }
 input::-ms-clear {
   display: none;
@@ -64,7 +65,7 @@ a:visited {
 }
 a:hover {
   text-decoration: none;
-  color: lighten($color-text-main, 30%);
+  color: lighten($maintextcolor, 30%);
 }
 a:active {
   text-decoration: none;

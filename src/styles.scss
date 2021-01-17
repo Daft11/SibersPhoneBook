@@ -55,13 +55,10 @@ body {
   line-height: 1.6;
   background-color: $bgcolor;
   //   height: 100%;
-  overflow-y: auto !important;
+  // overflow-y: auto !important;
   margin: 0;
 }
 
-html {
-  //   scroll-behavior: smooth;
-}
 //</Null style, common parameters>===============================================================================================
 
 //<Main grid>===========================================================================================================
@@ -92,16 +89,22 @@ html {
   padding: 10px 15px;
   min-width: 120px;
   transition: color linear 0.2s;
+  transition: background-color linear 0.2s;
+
   &:hover {
-    transition: background-color linear 0.2s;
     background-color: $maincolor;
     color: $contrast;
+    @media (max-width: $md1+px) {
+      background-color: transparent;
+      color: black;
+    }
     &:disabled {
       color: #929292;
     }
   }
   &:active {
-    background-color: darken($maincolor, 30%);
+    transition: unset;
+    background-color: darken($maincolor, 50%);
   }
   &:disabled {
     border: 2px solid #a4a4a4;

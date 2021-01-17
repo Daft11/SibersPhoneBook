@@ -5,7 +5,7 @@
     class="contact__image"
     (error)="onErrorToLoad($event)"
   />
-  <div class="contact__info">
+  <div class="contact__info" *ngIf="!isChanging">
     <p class="contact__label">Name:</p>
     <p class="contact__element">{{ contact.name }}</p>
     <p class="contact__label">Phone:</p>
@@ -13,9 +13,62 @@
     <p class="contact__label">Email:</p>
     <p class="contact__element">{{ contact.email }}</p>
   </div>
+  <div
+    class="contact__info-change contact__info"
+    *ngIf="isChanging"
+    [formGroup]="contactForm"
+  >
+    <label class="contact__label" for="name">Name:</label>
+    <input
+      class="contact__element-input"
+      id="name"
+      formControlName="name"
+      maxlength="30"
+      [ngClass]="{ 'is-invalid': submitted && f.name.errors }"
+      [value]="contact.name"
+    />
+    <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+      <div *ngIf="f.name.errors.required">Name is required</div>
+      <div *ngIf="f.name.errors.minlength || f.name.errors.pattern">
+        Name must be at least 2 eng characters
+      </div>
+    </div>
+    <label class="contact__label" for="phone">Phone:</label>
+    <input
+      class="contact__element-input"
+      id="phone"
+      formControlName="phone"
+      maxlength="30"
+      [ngClass]="{ 'is-invalid': submitted && f.phone.errors }"
+      [value]="contact.phone"
+    />
+    <div *ngIf="submitted && f.phone.errors" class="invalid-feedback">
+      <div *ngIf="f.phone.errors.required">Phone is required</div>
+      <div *ngIf="f.phone.errors.pattern || f.phone.errors.minlength">
+        Phone must be at least 6 digits
+      </div>
+    </div>
+    <label class="contact__label" for="email">Email:</label>
+    <input
+      class="contact__element-input"
+      id="email"
+      value="{{ contact.email }}"
+      formControlName="email"
+      maxlength="40"
+      [ngClass]="{ 'is-invalid': submitted && f.email.errors }"
+    />
+    <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+      <div *ngIf="f.email.errors.email">
+        Email must be a valid email address
+      </div>
+    </div>
+  </div>
   <br />
   <div class="btn-group">
-    <button class="btn" (click)="onChangeClick()">Change</button>
+    <button class="btn" (click)="onChangeClick()" *ngIf="!isChanging">
+      Change
+    </button>
+    <button class="btn" (click)="onSaveClick()" *ngIf="isChanging">Save</button>
     <button class="btn btn-delete" (click)="onDeleteClick()">Delete</button>
   </div>
 </section>

@@ -25,7 +25,7 @@
               [attr.data-contact-id]="contact.id"
               (click)="onDetailClick($event)"
             >
-              {{ contact.name }}
+              {{ fixLongName(contact.name) }}
             </p>
             <p
               class="contactlist__contact-phone"

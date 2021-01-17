@@ -1,39 +1,59 @@
 @import "../../../exportStyles/variables.scss";
+@import "../../../exportStyles/mixins.scss";
 
 .detail__container {
   position: relative;
-  display: flex;
+  @include flexbox;
   flex-direction: column;
   width: 500px;
+  padding: 0 20px;
   @media (max-width: $md2+px) {
     width: 300px;
   }
   @media (max-width: $md4+px) {
     width: unset;
+    margin: -10px -20px;
   }
   .contact__image {
     align-self: center;
     height: 50px;
     width: 50px;
     border-radius: 50%;
-    // @media (max-width: $md4+px) {
-    //   height: 30px;
-    //   width: 30px;
-    // }
   }
-  .contact__label {
-    font-weight: 600;
-    font-size: $fontsizelabel;
-  }
-  .contact__element {
-    margin-bottom: 5px;
-    border-bottom: solid 1px $maincolor;
-    display: block;
-    overflow-wrap: break-word;
-    word-wrap: break-word;
-
-    @media (max-width: $md4+px) {
+  .contact__info {
+    height: 200px;
+    .contact__label {
+      display: inline-block;
+      line-height: 30px;
+      font-weight: 600;
+      font-size: $fontsizelabel;
+      padding-top: 10px;
+      // @media (max-width: $md2+px) {
+      // }
+    }
+    .contact__element,
+    .contact__element-input {
+      display: block;
+      overflow-wrap: break-word;
+      word-wrap: break-word;
+      width: 100%;
+      min-height: 30px;
+      line-height: 30px;
+      padding: 0 5px;
       font-size: $fontsizesecondary;
+      text-decoration: none;
+      border-bottom: solid 1px $maincolor;
+
+      @media (max-width: $md4+px) {
+        font-size: $fontsizesecondary;
+      }
+      @media (max-width: $md2+px) {
+        font-size: 0.8em;
+        height: 25px;
+      }
+    }
+    .contact__element-input {
+      background-color: lighten($maincolor, 10%);
     }
   }
   .btn-group {
@@ -48,6 +68,12 @@
       margin-top: 15px;
       border-color: $colordanger;
       &:hover {
+        background-color: $colordanger;
+        @media (max-width: $md1+px) {
+          background-color: transparent;
+        }
+      }
+      &:active {
         background-color: $colordanger;
       }
     }
@@ -64,6 +90,23 @@
       content: "\2716";
       font-size: 20px;
       font-weight: 600;
+    }
+  }
+  .is-invalid {
+    border-bottom: solid 1px $colordanger !important;
+    background-color: lighten($colordanger, 20) !important;
+  }
+  .invalid-feedback {
+    position: absolute;
+    right: 0;
+    display: inline-block;
+    width: unset;
+    margin-left: auto;
+    font-size: 13px;
+    color: $colordanger;
+    @media (max-width: $md2+px) {
+      font-size: 0.7em;
+      margin-right: 20px;
     }
   }
 }

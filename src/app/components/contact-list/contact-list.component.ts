@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 
-import { ContactService } from './contact.service'; //using this service to fetch data from server
+import { ContactService } from '../../services/contact.service'; //using this service to fetch data from server
 import { ContactModel } from './contact.model'; //model for fetched array of contacts
 import { ContactDetailComponent } from '../contact-detail/contact-detail.component';
 
@@ -57,6 +57,14 @@ export class ContactListComponent implements OnInit {
       id: id,
     };
     this.dialog.open(ContactDetailComponent, dialogConfig);
+  }
+
+  fixLongName(contactName: string) {
+    //make too long names shorter(full name will appear in details)
+    if (contactName.length > 20) {
+      return contactName.substring(0, 17) + '...';
+    }
+    return contactName;
   }
 
   onErrorToLoad(event: any) {

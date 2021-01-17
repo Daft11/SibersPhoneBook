@@ -1,4 +1,5 @@
 export class DirtyContactModel {
+  //model for fetching frow external server
   constructor(
     public name: string,
     public phone: string,
@@ -16,7 +17,8 @@ export class DirtyContactModel {
 }
 
 export class ContactModel {
-  //not defined value will be required to create new ContactModel
+  //model for object we will work with, without some keys and data we will definitely not use
+  //not defined value will be required to create new object
   constructor(
     public name: string,
     public phone: string,
