@@ -11,10 +11,10 @@ App was designed to work with all supported latest versions browsers ( Chrome, F
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.0.4.
 
 ## Getting Started:<br/>
-To get started you need to have instaled on your machine [GIT](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git), [NPM](https://www.npmjs.com/get-npm) , [Angular](https://cli.angular.io/) (version 11.0.4 or later) and some text editor for code (I'm using Visual Studio Code).<br/>When all set, open Giy bash and follow the steps:
+To get started you need to have instaled on your machine [GIT](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git), [NPM](https://www.npmjs.com/get-npm) , [Angular](https://cli.angular.io/) (version 11.0.4 or later) and some text editor for code (I'm using Visual Studio Code).<br/>When all set, open Git bash and follow the steps:
   1) Clone repository via comand: `git clone https://github.com/Daft11/SibersPhoneBook.git`
   2) Fall in to the folder with project `cd SibersPhoneBook`
-  2) Run `npm install --save-dev` to install all packages app needs.
+  2) Run `npm install` to install all packages app needs.
   3) Run `ng serve` to run Angular development server (add flag `-o` to open it in browser on load)
   
  Greate now you should have working live server.<br/>
