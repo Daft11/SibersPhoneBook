@@ -104,9 +104,9 @@
     margin-left: auto;
     font-size: 13px;
     color: $colordanger;
+    margin-right: 20px;
     @media (max-width: $md2+px) {
       font-size: 0.7em;
-      margin-right: 20px;
     }
   }
 }
