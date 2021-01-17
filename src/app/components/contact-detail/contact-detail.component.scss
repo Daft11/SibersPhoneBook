@@ -1,19 +1,69 @@
 @import "../../../exportStyles/variables.scss";
 
-.detail__container{
-	display: flex;
-	flex-direction: column;
-	width: 500px;
-	.contact__image{
-		align-self: center;
-		height: 50px;
-        width: 50px;
-        border-radius: 50%;
-        @media (max-width: $md4+px) {
-          height: 30px;
-          width: 30px;
-        }
-	}
+.detail__container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 500px;
+  @media (max-width: $md2+px) {
+    width: 300px;
+  }
+  @media (max-width: $md4+px) {
+    width: unset;
+  }
+  .contact__image {
+    align-self: center;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    // @media (max-width: $md4+px) {
+    //   height: 30px;
+    //   width: 30px;
+    // }
+  }
+  .contact__label {
+    font-weight: 600;
+    font-size: $fontsizelabel;
+  }
+  .contact__element {
+    margin-bottom: 5px;
+    border-bottom: solid 1px $maincolor;
+    display: block;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
 
+    @media (max-width: $md4+px) {
+      font-size: $fontsizesecondary;
+    }
+  }
+  .btn-group {
+    margin: 0 auto;
+    width: 100%;
+    text-align: center;
+    .btn {
+      max-width: 120px;
+      margin: 0 20px;
+    }
+    .btn-delete {
+      margin-top: 15px;
+      border-color: $colordanger;
+      &:hover {
+        background-color: $colordanger;
+      }
+    }
+  }
+  .close-btn {
+    position: absolute;
+    top: -5px;
+    right: 0px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: transparent;
+    &::after {
+      content: "\2716";
+      font-size: 20px;
+      font-weight: 600;
+    }
+  }
 }
-

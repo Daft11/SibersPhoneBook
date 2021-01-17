@@ -1,10 +1,21 @@
-
 <section class="detail__container container">
-<img src="{{contact.avatar}}" class="contact__image" (error)="onErrorToLoad($event)">
-<div class="contact__info">
-<p class = "contact__element">Name: {{contact.name}}</p>
-<p class = "contact__element">Phone: {{contact.phone}}</p>
-<p class = "contact__element">Email: {{contact.email}}</p>
-</div>
-<button class="btn" (click)="onCloseClick()">Close</button>
+  <button class="close-btn" (click)="onCloseClick()"></button>
+  <img
+    src="{{ contact.avatar }}"
+    class="contact__image"
+    (error)="onErrorToLoad($event)"
+  />
+  <div class="contact__info">
+    <p class="contact__label">Name:</p>
+    <p class="contact__element">{{ contact.name }}</p>
+    <p class="contact__label">Phone:</p>
+    <p class="contact__element">{{ contact.phone }}</p>
+    <p class="contact__label">Email:</p>
+    <p class="contact__element">{{ contact.email }}</p>
+  </div>
+  <br />
+  <div class="btn-group">
+    <button class="btn" (click)="onChangeClick()">Change</button>
+    <button class="btn btn-delete" (click)="onDeleteClick()">Delete</button>
+  </div>
 </section>

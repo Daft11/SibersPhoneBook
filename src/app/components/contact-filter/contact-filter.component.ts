@@ -17,7 +17,7 @@ export class ContactFilterComponent implements OnInit {
     let value = (event.target as HTMLInputElement).value;
     this.contactService.valueForFiltering = value;
     this.contactService.filter();
-    if (value) this.contactService.ifFilterEnabled = true;
-    else this.contactService.ifFilterEnabled = false;
+    if (value) this.contactService.isFilterEnabled = true;
+    else this.contactService.isFilterEnabled = false;
   }
 }

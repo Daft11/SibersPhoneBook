@@ -21,10 +21,11 @@ export class ContactDetailComponent implements OnInit {
     private dialogRef: MatDialogRef<ContactDetailComponent>,
     @Inject(MAT_DIALOG_DATA) data
   ) {
-    this.id = data.id;
+    this.id = data.id; // gets id from MatDialog on component init
   }
 
   ngOnInit(): void {
+    //via id finds in contactService.contactList specific contact to display it details
     this.contact = this.contactService.contactList.find((contact) => {
       return contact.id == this.id;
     });
@@ -33,6 +34,13 @@ export class ContactDetailComponent implements OnInit {
   onCloseClick(): void {
     this.dialogRef.close(); //closing modal window
   }
+
+  onDeleteClick(): void {
+    this.contactService.deleteContact(this.id);
+    this.dialogRef.close(); //closing modal window
+  }
+
+  onChangeClick() {}
 
   onErrorToLoad(event: any) {
     // to prevent error on loading image for contact and set new image instead

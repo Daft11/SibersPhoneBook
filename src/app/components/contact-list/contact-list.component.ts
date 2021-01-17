@@ -13,7 +13,8 @@ import { ContactDetailComponent } from '../contact-detail/contact-detail.compone
 export class ContactListComponent implements OnInit {
   contactList: ContactModel[];
   charsForGouping: [];
-  reducer = (accumulator, currentContact) => {
+
+  reducer(accumulator, currentContact): void {
     let char = currentContact.name.charAt(0).toUpperCase();
     if (accumulator.includes(char)) {
       return accumulator;
@@ -21,27 +22,22 @@ export class ContactListComponent implements OnInit {
       accumulator.push(char);
       return accumulator;
     }
-  };
+  }
 
-  constructor(private contactService: ContactService,
-    private dialog: MatDialog) {}
+  constructor(
+    private contactService: ContactService,
+    private dialog: MatDialog
+  ) {}
 
   ngOnInit(): void {
-    this.contactService
-      .fetchContactList()
-      .subscribe((response: ContactModel[]) => {
+    this.contactService.getContactList();
+    this.contactService.contactListChanged.subscribe(
+      (response: ContactModel[]) => {
         this.contactList = response; //assign contactList as new array of fetched contacts via subscribe
         this.charsForGouping = response.reduce(this.reducer, []); //create new array of chars for sorting contactList
-      });
-    this.contactService.contactListChanged.subscribe(
-      //subscribing on changes contactList from contactService and reassign local contactList
-      (newContactList: ContactModel[]) => {
-        this.contactList = newContactList;
-        this.charsForGouping = newContactList.reduce(this.reducer, [])//refresh arr of title chars to display
       }
     );
   }
-
 
   filterByChar(char: string) {
     //splits contactList to parts by fisrt char of contact name string
@@ -51,21 +47,16 @@ export class ContactListComponent implements OnInit {
     return arr; //returning part of array with matching first letter of the name
   }
 
-  onDeleteClick(event: any) {
-    const id = event.target.getAttribute('data-contact-id');
-    this.contactService.deleteContact(id);
-  }
-
-  onDetailClick(event: any) {
-    const id = event.target.getAttribute('data-contact-id');
-
+  onDetailClick(event: Event) {
+    const id = (event.target as HTMLInputElement).getAttribute(
+      'data-contact-id'
+    );
     const dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus = true;
-        dialogConfig.data = {
-        id: id
+    dialogConfig.data = {
+      id: id,
     };
     this.dialog.open(ContactDetailComponent, dialogConfig);
-
   }
 
   onErrorToLoad(event: any) {

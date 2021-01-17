@@ -2,38 +2,79 @@
 @import "../../../exportStyles/mixins.scss";
 
 .addcontact__container {
+  position: relative;
+  overflow: visible;
   max-height: 400px;
+  width: 300px;
+  margin: 20px;
   @media (max-width: $md4+px) {
-    margin-right: auto;
+    // margin-right: auto;
+    width: 200px;
+    margin: 0;
   }
 }
 .addcontact__form-body {
   @include flexbox;
   flex-direction: column;
   justify-content: space-evenly;
-  min-height: 300px;
-  // min-width: 300px;
+  @media (max-width: $md4+px) {
+    // margin-right: auto;
+    height: unset;
+  }
   .addcontact__form-group {
     @include flexbox;
     flex-direction: column;
     justify-content: space-between;
-    .addcontact__form-element {
-      padding: 5px;
+    height: 200px;
+    @media (max-width: $md4+px) {
+      // margin-right: auto;
+      height: 200px;
     }
-    .input {
-      border-bottom: solid 2px $maincolor;
+    .addcontact__form-label {
+      font-size: $fontsizesecondary;
+      font-weight: 600;
+    }
+    .addcontact__form-element {
+      font-weight: 400;
+      padding-bottom: 15px;
+      margin-bottom: 25px;
+      @media (max-width: $md4+px) {
+        // margin-right: auto;
+        // height: 170px;
+      }
+      border-bottom: solid 1px $maincolor;
       padding-bottom: 5px;
-      font-size: 18px;
+      font-size: $fontsizesecondary;
+    }
+    .is-invalid {
+      border-bottom: solid 1px $colordanger;
+      background-color: lighten($colordanger, 20);
+    }
+    .invalid-feedback {
+      margin-top: -20px;
+      font-size: 13px;
+      color: $colordanger;
     }
   }
-  .addcontact__button-group {
-    @include flexbox;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    @media (max-width: $md4+px) {
-      flex-direction: column;
-      margin-top: 50px;
+  .form__submit-btn {
+    margin: 40px auto 0;
+    width: 120px;
+  }
+  .form__close-btn {
+    position: absolute;
+    top: -20px;
+    right: -20px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: transparent;
+    &::after {
+      content: "\2716";
+      font-size: 20px;
+      font-weight: 600;
+    }
+    &:hover {
+      color: $colordanger;
     }
   }
 }

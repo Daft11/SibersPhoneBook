@@ -35,24 +35,11 @@
               {{ contact.phone }}
             </p>
           </div>
-          <button class="details-btn">
-            <img
-              src="../../../assets/images/info.svg"
-              alt=""
-              height="20px"
-              [attr.data-contact-id]="contact.id"
-              (click)="onDetailClick($event)"
-            />
-          </button>
-          <button class="delete-btn">
-            <img
-              src="../../../assets/images/trash.svg"
-              alt=""
-              height="20px"
-              [attr.data-contact-id]="contact.id"
-              (click)="onDeleteClick($event)"
-            />
-          </button>
+          <button
+            class="details-btn icon-btn"
+            [attr.data-contact-id]="contact.id"
+            (click)="onDetailClick($event)"
+          ></button>
         </li>
       </ul>
     </li>

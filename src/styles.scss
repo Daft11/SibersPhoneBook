@@ -92,13 +92,16 @@ html {
   padding: 10px 15px;
   min-width: 120px;
   transition: color linear 0.2s;
-  transition: background-color linear 0.2s;
   &:hover {
+    transition: background-color linear 0.2s;
     background-color: $maincolor;
     color: $contrast;
     &:disabled {
       color: #929292;
     }
+  }
+  &:active {
+    background-color: darken($maincolor, 30%);
   }
   &:disabled {
     border: 2px solid #a4a4a4;
