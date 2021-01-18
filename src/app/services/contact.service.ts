@@ -4,11 +4,11 @@ import { EventEmitter, Injectable } from '@angular/core';
 import { tap } from 'rxjs/operators';
 import { DirtyContactModel } from '../components/contact-list/contact.model'; //model for fetched array of contacts
 import { ContactModel } from '../components/contact-list/contact.model'; //model for cleaned array of contacts
+import { environment } from '../../environments/environment'; //here we store url to fetch data
 
 @Injectable()
 export class ContactService {
-  externalServerUrl: string =
-    'https://cors-anywhere.herokuapp.com/http://demo.sibers.com/users'; //url to get data from
+  externalServerUrl: string = environment.url; //url to get data from
   contactList: ContactModel[];
   filtredContactList: ContactModel[];
   isFilterEnabled: boolean = false; //marks searching status, if search field isn't empty becomes true, otherwise false
