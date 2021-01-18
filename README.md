@@ -1,5 +1,7 @@
 # Phone Book for Sibers
 
+GitHub Pages link: https://daft11.github.io/SibersPhoneBook/
+
 Test project from [Sibers](https://www.sibers.com/).<br/>
 Web version of classical Phone Book. Here you can write down all your contacs and save it to browser local storage, so all data will stay with you even after page refresh.
 Also you can have fun with search field. It can filter your contacts by name or number.
