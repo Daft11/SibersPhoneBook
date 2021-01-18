@@ -98,7 +98,7 @@ export class ContactService {
 
   filter(): void {
     const value = this.valueForFiltering.toLowerCase();
-    this.filtredContactList = this.contactList; //creates a copy of contacList to prevent changes in main
+    this.filtredContactList = this.contactList.slice(); //creates a copy of contacList to prevent changes in main
     this.filtredContactList = this.filtredContactList.filter(
       (contact: ContactModel) => {
         const name = contact.name.toLowerCase();
