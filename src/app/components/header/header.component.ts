@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { AddContactFormComponent } from '../add-contact-form/add-contact-form.component';
 
@@ -7,15 +7,13 @@ import { AddContactFormComponent } from '../add-contact-form/add-contact-form.co
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })
-export class HeaderComponent implements OnInit {
-  ngOnInit(): void {}
-
+export class HeaderComponent {
   constructor(private dialog: MatDialog) {}
 
-  onAddContactClick() {
+  onAddContactClick(): void {
     const dialogConfig = new MatDialogConfig();
 
-    dialogConfig.autoFocus = true;
+    dialogConfig.autoFocus = true; //when dialog opens sets autofocus on form input
 
     this.dialog.open(AddContactFormComponent, dialogConfig);
   }

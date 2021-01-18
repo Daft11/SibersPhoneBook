@@ -17,7 +17,7 @@ export class ContactService {
 
   constructor(private httpClient: HttpClient) {}
 
-  getContactList() {
+  getContactList(): void {
     const localStorageData = JSON.parse(localStorage.getItem('contactList')); //will return null or data
     if (localStorageData) {
       //if there is some data, it will be stored into local variable for manipulations with in future
