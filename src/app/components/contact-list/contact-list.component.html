@@ -1,4 +1,5 @@
 <section class="contactlist__container container">
+  <div class="loader" *ngIf="isLoaded">Loading...</div>
   <ul class="contactlist__char-group">
     <li *ngFor="let char of charsForGouping" class="contactlist__char-element">
       <h4

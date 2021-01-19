@@ -11,6 +11,7 @@ import { ContactDetailComponent } from '../contact-detail/contact-detail.compone
   styleUrls: ['./contact-list.component.scss'],
 })
 export class ContactListComponent implements OnInit {
+  isLoaded = true; //if true shows loading animation
   contactList: ContactModel[];
   charsForGouping: string[];
   newContactAvatarUrl: string =
@@ -27,6 +28,7 @@ export class ContactListComponent implements OnInit {
       (response: ContactModel[]) => {
         this.contactList = response; //assign contactList as new array of fetched contacts via subscribe
         this.charsForGouping = response.reduce(this.reducer, []); //create new array of chars for sorting contactList
+        this.isLoaded = false; //turn off loading animation
       }
     );
   }

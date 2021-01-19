@@ -81,13 +81,22 @@ export class ContactService {
     name: string,
     phone: string,
     email: string,
-    id: number = this.contactList.length
+    id: number = this.idGenerator()
   ): void {
     const newContact = new ContactModel(name, phone, id, email); //adds new contact based on ContactModel
     this.contactList.push(newContact); //repeat sorting of contactList
     this.sortContactsAlphabet(this.contactList);
     localStorage.setItem('contactList', JSON.stringify(this.contactList));
     this.emitContactListChanges(); //creates new event to catch it in other components
+  }
+
+  idGenerator(): number {
+    const exisingIds = this.contactList.map((contact) => contact.id);
+    let newId = 0;
+    while (exisingIds.includes(newId)) {
+      newId++;
+    }
+    return newId;
   }
 
   deleteContact(id: number): void {
